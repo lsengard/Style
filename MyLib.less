@@ -1,0 +1,129 @@
+//定义主题颜色
+	@red: #d82828; //选择的，最重要的信息，错误提现
+	@gre: #2baa3f; //某些标注
+	@blue: #3f93dd; //辅色：标注重要可点击信息，鼠标进入可点击文字变色
+  	@blk1: #313131; //(主标题，名称)20px
+  	@blk2: #333; //主目录文字 18px，正文 16px
+  	@blk3: #666; //次级目录文字 16px
+  	@blk4: #b5b5b5; //次次级目录文字 16px
+	@blk5: #dbe0e4; //页面中一些辅助字体 14px
+	@int-bg:#fafcfc; //input背景色
+	@bor: 1px solid #ccc; //边框颜色
+	@hui:#a1a1a1;
+
+	//定义a标签基本样式
+	a{text-decoration:none;color:#333333;cursor: pointer;}
+	a:hover{text-decoration: underline;}
+	//清除输入框圆角 重定义获得焦点颜色
+	input[type="text"],
+	input[type="password"]{border-radius: 0!important;}
+	input[type="text"]:focus,
+	input[type="password"]:focus{border-color:#d82828;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.0),0 0 8px rgba(216,40,40,.0);box-shadow:inset 0 1px 1px rgba(0,0,0,.0),0 0 8px rgba(216,40,40,.0)}
+
+//创建通用变量
+	.fl{float: left;} //左浮动
+	.fr{float: right;} //右浮动
+	.w-h(@w,@h){width: @w;height: @h;} //创建宽高区域
+	.w-h-z(@wh){width: @wh;height: @wh;} //创建等宽高区域
+	//清除浮动
+		.newroom{
+			zoom: 1;
+			&:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+		}
+	//创建过渡效果
+		.transition(@time:.2s){         
+			-webkit-transition: all @time;
+			 -moz-transition: all @time;
+			 -ms-transition: all @time;
+			 -o-transition: all @time;
+			 transition: all @time; 
+		}
+	// 阴影
+		.shadow(@x:1px,@y:1px,@k:1px,@color:#ccc){
+			-webkit-box-shadow: @x @y @k @color;
+			-ms-box-shadow: @x @y @k @color;
+			-moz-box-shadow: @x @y @k @color;
+			-o-box-shadow: @x @y @k @color;
+			box-shadow: @x @y @k @color;
+		}
+	//定义左右居中(居中目标要有宽度值)
+		.mlr-auto{                        
+			margin-left: auto;
+			margin-right: auto;
+		}
+	//定义最大宽度
+		.pagemaxwidth(@max-w:1000px){     
+			width: @max-w;
+			.mlr-auto;
+		}
+	//创建按钮
+		.bul-btn(@w:150px,@h:45px,@c:#1bbc9d){ //@w:宽度 @h:高度 @c:背景颜色 
+			position: relative;
+			display: block;
+			padding: 0;
+			width: @w;
+			height: @h;
+			border-radius: 5px;  //圆角
+			text-align: center;
+			text-decoration: none;
+			line-height: @h;
+			font-size: 16px;
+			color: #fff;
+			background-color: @c;
+			.shadow(0,4px,0,@c*.7);
+			// -webkit-box-shadow: 0 4px 0 @c*.7; //阴影颜色
+			// box-shadow: 0 4px 0 @c*.7;
+			//点击效果
+			&:active{  
+				top: 4px;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+		}
+
+	//创建进度条
+		.progressbar(@col:@gre,@h:7px){  //@col:指示条颜色 @h:高度
+			position: relative;
+			overflow: hidden;
+			width: 100%;
+			height: @h;
+			border-radius: @h/2;
+			background-color: #ccc;
+			span{
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: @h;
+				background-color: @col;
+			}
+		}
+		//生成进度条(结构 .progressbar > <span style="width:80%;">)
+		.bul-progressbar{
+			.progressbar();
+		}
+
+	// .border{border: 1px solid #ccc;} //边框
+
+	// .int-focus{border-color: @red;background: #fff;box-shadow: none;} //input焦点选中效果
+
+	// footer始终置于页面最底部
+		@footheight: 400px; //footer高度
+		html,body {
+		  margin: 0;
+		  padding:0;
+		  height: 100%;
+		}
+		//最大容器定义
+		.max-container {
+		  min-height:100%;
+		  height: auto !important;
+		  height: 100%; /*IE6最小高度min-height*/
+		  position: relative;
+		  padding-bottom: @footheight;
+		}
+
